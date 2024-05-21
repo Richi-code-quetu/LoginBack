@@ -1,0 +1,73 @@
+html {
+    --s: 300px; /* control the size*/
+    --c1: #1d1d1d;
+    --c2: #4e4f51;
+    --c3: #3c3c3c;
+    
+    background:
+        repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) 
+        calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+        repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+    background-size: var(--s) calc(var(--s)*0.577);
+}
+
+body{
+    align-items: center;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+    justify-content: center;
+    margin: 0;
+    min-height: 100svh;
+}
+
+h1{
+    text-align: center;
+}
+
+.form-container{
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    width: 500px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form+p, form p{
+    text-align: center;
+}
+
+input, button{
+    border: unset;
+    border-radius: 4px;
+    padding: 15px 30px;
+    font-size: larger;
+}
+
+button{
+    background-color: rgb(12, 186, 244);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.error{
+    color: red;
+}
+
+.hidden{
+    display: none;
+}
+
+.sr-only{
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
