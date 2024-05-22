@@ -15,6 +15,12 @@ async function login(req, res){
         return res.status(400).send({status:"Error", message:"Campos incompletos"});
     }
 
+    const userReview = users.find(u => u.user === user);
+    if(!userReview){
+        return res.status(400).send({status:"Error", message:"Error al iniciar sesión"});
+    }
+
+    
 }
 
 async function register(req, res){

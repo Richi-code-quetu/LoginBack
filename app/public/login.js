@@ -16,7 +16,7 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     });
 
     if(!res.ok){
-        return errorMessage.classList.toggle("hidden", false)
+        return errorMessage.classList.toggle("hidden", false);
     }
 
     const resJson = await res.json();
