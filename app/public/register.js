@@ -1,3 +1,5 @@
+const errorMessage = document.getElementsByClassName("error")[0]
+
 document.getElementById("register-form").addEventListener("submit", async(e)=>{
     console.log(e);
     e.preventDefault();
@@ -12,4 +14,13 @@ document.getElementById("register-form").addEventListener("submit", async(e)=>{
             password: e.target.children.password.value
         })
     });
+
+    if(!res.ok){
+        return errorMessage.classList.toggle("hidden", false);
+    }
+
+    const resJson = await res.json(); //Esto es el body del registro
+    if (resJson.redirect) { //Si el cuerpo tiene un redirect, lleva a ese redirect
+        window.location.href = resJson.redirect;
+    }
 })
