@@ -19,6 +19,7 @@ app.use(express.json());
 //Routes
 app.get("/", (req, res) => res.sendFile(__dirname + "/pages/login.html"));
 app.get("/register", (req, res) => res.sendFile(__dirname + "/pages/register.html"));
+app.get("/login", (req, res) => res.sendFile(__dirname + "/pages/login.html"));
 app.get("/admin", (req, res) => res.sendFile(__dirname + "/pages/admin/admin.html"));
 app.post("/api/register", auth.register);
 app.post("/api/login", auth.login);
