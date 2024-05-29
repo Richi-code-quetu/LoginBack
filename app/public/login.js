@@ -24,5 +24,3 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
         window.location.href = resJson.redirect;
     }
 });
-
-console.log()

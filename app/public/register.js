@@ -19,7 +19,7 @@ document.getElementById("register-form").addEventListener("submit", async(e)=>{
         return errorMessage.classList.toggle("hidden", false);
     }
 
-    const resJson = await res.json(); //Esto es el body del registro
+    const resJson = await res.json(); //Esto es el body del registro en formato JSON
     if (resJson.redirect) { //Si el cuerpo tiene un redirect, lleva a ese redirect, en este caso a LogIn Form
         window.location.href = resJson.redirect;
     }
