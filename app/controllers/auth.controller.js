@@ -1,15 +1,19 @@
 import bcryptjs from "bcryptjs";
+import jsonwebtoken from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const users = [
     {
         user: "Ricardo",
         email: "ricardo@gmail.com",
-        password: "$2a$05$JLdqV7cb9dleuUeA71PPau330OTDa2ETrwRAVF8BL7.gq./nzWoRm"
+        password: "$2a$05$jvzrxW77H3s.SWDdA/LELeomZcOUm6xMSj8.LPffVe3IEp.E8j8vO"
     },
     {
-        user: "Miguel",
-        email: "miguel@gmail.com",
-        password: "Miguel"
+        user: "Natalia",
+        email: "natalia@gmail.com",
+        password: "$2a$05$HBkVrat0.2IPMZeLAaldBuoVvaN2aOuCVAgJ5iBEvnfEW1LXfT.gm"
     }
 ];
 
@@ -42,6 +46,20 @@ async function login(req, res){
             }
         ); //Contraseña incorrecta
     }
+
+    const token = jsonwebtoken.sign(
+        {user: userExists.user}, 
+        process.env.JWT_SECRET,
+        {expiresIn:process.env.JWT_EXPIRATION}
+    );// JSONWebToken.sign necesita un payload, una llave secreta y expiración
+
+    const cookieOption = {
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES *24 *60 *60 *1000),
+        path: "/"
+    }
+
+    res.cookie("jwt", token, cookieOption);
+    res.send({status: "Ok", message: "Usuario loggeado", redirect: "/admin"});
 }
 
 async function register(req, res){
@@ -64,6 +82,8 @@ async function register(req, res){
         user, email, password: hashedPassword 
     }
     users.push(newUser);
+    console.log(newUser);
+    console.log(users);
     return res.status(201).send({status: "ok", message: `Usuario ${newUser.user} agregado`, redirect:"/"});
 }
 
