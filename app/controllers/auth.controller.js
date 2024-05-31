@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const users = [
+export const users = [
     {
         user: "Ricardo",
         email: "ricardo@gmail.com",
@@ -56,7 +56,7 @@ async function login(req, res){
     const cookieOption = {
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES *24 *60 *60 *1000),
         path: "/"
-    }
+    } //La galleta permite darle el token al cliente para cada vez que se loggea
 
     res.cookie("jwt", token, cookieOption);
     res.send({status: "Ok", message: "Usuario loggeado", redirect: "/admin"});
